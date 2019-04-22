@@ -6,16 +6,75 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Mission to Mars</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/spacelab/bootstrap.min.css">
 </head>
 
 <body>
+  <div class="container">
+    <!-- Page header with scrape button -->
+    <div class="jumbotron text-center">
+      <h1>Mission to Mars</h1>
+      <p><a class="btn btn-primary btn-sm" href="/scrape" role="button">Scrape New Data</a></p>
+    </div>
 
+    
+    <div class="row">
 
+      <!--Latest Mars news-->
+      <div class="col-md-12">
+        <h3 class="heading">Latest Mars News</h3>
+        <h5>{{mars_fields.news_title}}</h5>
+        <p>{{mars_fields.news_p}}</p>
+      </div>
+    </div>
 
+    
+    <div class="row">
+      
+      <!-- Featured Mars image -->
+      <div class="col-md-8">
+        <h3 class="heading">Featured Mars Image</h3>
+        <img id="main-image" class="img-fluid" src="{{mars_fields.featured_image_url}}" alt="Featured Mars Image">
+      </div>
+      
+      <div class="col-md-4">
+        
+        <div class="row">
+          <!-- Current Mars weather --> 
+          <div class="col-md-12">
+            <h5 class="heading">Current Weather on Mars</h5>
+            <p>{{mars_fields.mars_weather}}</p>
+          </div>
+        </div>
+        
+        <div class="row">
+          <!-- Mars facts --> 
+          <div class="col-md-12">
+            <h5 class="heading">Mars Facts</h5>
+            <div><small>{{mars_fields.marsfacts_table | safe}}</small></div>
+          </div>
+        </div>
 
+      </div>	
+    </div>
+    
+    <div class="row">
+      <div class="col-md-12">
+        <h3 class="text-center">Mars Hemispheres</h3>
+      </div>
+    </div>
 
+    <div class="row">
+      <!--Display pictures of the Mars hemispheres-->
+      {% for hemisphere in mars_fields.hemisphere_image_urls %}
+        <div class="col-md-6">
+          <img class="img-fluid" src="{{hemisphere.img_url}}" alt="Mars Image">
+          <h6>{{hemisphere.title}}</h6>
+        </div>
+      {% endfor %}
+    </div>
 
-	<p>{{mars_fields}}</p>
+  </div>
 </body>
 </html>
